@@ -1,0 +1,26 @@
+GET http://localhost:3004/posts/
+
+GET http://localhost:3004/posts?tag=nature
+###
+GET http://localhost:3004/posts?search_q=Healthy
+
+GET http://localhost:3004/posts?limit=8
+
+GET http://localhost:3004/posts?order_by=id&order=DESC
+
+GET http://localhost:3004/posts?order=DESC
+
+GET http://localhost:3004/posts?search_q=breakfast&tag=Healthy&limit=5
+
+###
+
+POST http://localhost:3004/post/
+Content-Type:application/json
+
+{
+    "id":16,
+    "title":"Kathak Dance Performance",
+    "description":"Immerse yourself in the rich traditions of Indian classical dance with a captivating Kathak performance.",
+    "imageUrl":"https://res.cloudinary.com/dtcogqxhp/image/upload/v1714725815/saksham-gangwar-wWiEThMgY94-unsplash_mc5ofw.jpg",
+    "tag":"Kathak"
+}

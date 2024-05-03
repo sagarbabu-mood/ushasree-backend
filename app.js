@@ -43,7 +43,7 @@ app.get("/posts/",async(request,response)=>{
     console.log(`tag value ${tag}`);
     
     const getPostsQuery=`
-    select * from posts WHERE tag LIKE '%${tag}%' or (title LIKE '%${search_q}%' or description LIKE '%${search_q}%')
+    select * from posts WHERE tag LIKE '%${tag}%' and (title LIKE '%${search_q}%' or description LIKE '%${search_q}%')
     ORDER BY ${order_by} ${order}
     LIMIT ${limit} OFFSET ${offset};
     `; 

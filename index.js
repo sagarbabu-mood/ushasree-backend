@@ -1,14 +1,16 @@
 const express = require("express");
 const path = require("path");
+require('dotenv').config();
 
 const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 const app = express();
 
 app.use(express.json())
-const dbPath = path.join(__dirname, "sampleDb.db");
+const dbPath = process.env.DB_FILE_PATH;
 
 let db = null;
+const PORT=process.env.PORT || 3004
 
 const initializeDBAndServer = async () => {
   try { 
@@ -18,7 +20,7 @@ const initializeDBAndServer = async () => {
       driver: sqlite3.Database,
     });
     //running server on  3004 port
-    app.listen(3004, () => {
+    app.listen(PORT, () => {
       console.log("Server Running at http://localhost:3004/");
     });
   } catch (e) {
@@ -40,7 +42,7 @@ app.get("/posts/",async(request,response)=>{
     search_q = "",
     tag="",
     }=request.query;
-    console.log(`tag value ${tag}`);
+    
     
     const getPostsQuery=`
     select * from posts WHERE tag LIKE '%${tag}%' and (title LIKE '%${search_q}%' or description LIKE '%${search_q}%')
